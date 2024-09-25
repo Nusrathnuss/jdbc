@@ -22,7 +22,7 @@ public class jdbc {
 			
 			//Establishing the connection
 			Connection con =DriverManager.getConnection(url,un,pw);
-			System.out.println("connection"+con+"is sucess");
+			//System.out.println("connection"+con+"is sucess");
 			
 			//creating the statement
 			Statement stmt=con.createStatement();
@@ -34,15 +34,19 @@ public class jdbc {
 			 while(resultSet.next()) {
 				 System.out.println(resultSet.getInt(1)+ 
                     " "+resultSet.getString(2)+"  "+resultSet.getString(3)+" "+resultSet.getInt(4));
-			 }
-			 
-			
-			
+			 }	
 		}
 		catch(ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 			
 		}
+		finally {
+			myconnect.connect(resultSet,stmt,con);
+			
+		}
+		
+		
+		
 		
 		
 	}
