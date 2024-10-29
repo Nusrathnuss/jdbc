@@ -9,7 +9,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 import java.util.Scanner;
-
+//create storedprocedure in database and copy the query which is repeating more times and paste 
+//it insid begin name it in backtick and then give parameters as input or output or both exp( in sal int) then apply and execute it             
 public class StoredProcedureinvoke {
 	
 		static private Statement stmt;
