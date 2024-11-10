@@ -1,6 +1,7 @@
 package bankdetails;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -27,22 +28,40 @@ public class writeImage {
 		}
 	}
 	public static void main(String[] args) {
+		//if u want to insert name  of file from user then write like this
+		String name=new Scanner(System.in).next();
+		System.out.println("enter id");
 		try {
-			
 			pstmt=con.prepareStatement(sql);
-			System.out.println("enter the id");
-			//to avoid memory wastage we can also write like this that creting object and simultaneously collecting integer data
-			//int id=new Scanner(System.in).nextInt();
-			//instead of writing like this just write where ever u need it to avoid extra usage of memory
 			pstmt.setInt(2, new Scanner(System.in).nextInt());
-			//create obj of name fileinpstream
-			//here double slash is one it will take escape so
-			fis=new FileInputStream("F:\\imagess\\tim.png");
+			fis=new FileInputStream("F:\\imagess\\"+name+".png");
 			pstmt.setBinaryStream(1, fis);
 			int x=pstmt.executeUpdate();
-			System.out.println(x+"rows affected");
-		}catch(Exception e) {
+			System.out.println(x+"rows updated");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	// TODO Auto-generated method stub
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+
+		//		try {
+		//			
+		//			pstmt=con.prepareStatement(sql);
+		//			System.out.println("enter the id");
+		//			//to avoid memory wastage we can also write like this that creting object and simultaneously collecting integer data
+		//			//int id=new Scanner(System.in).nextInt();
+		//			//instead of writing like this just write where ever u need it to avoid extra usage of memory
+		//			pstmt.setInt(2, new Scanner(System.in).nextInt());
+		//			//create obj of name fileinpstream
+		//			//here double slash is one it will take escape so
+		//			fis=new FileInputStream("F:\\imagess\\tim.png");
+		//			pstmt.setBinaryStream(1, fis);
+		//			int x=pstmt.executeUpdate();
+		//			System.out.println(x+"rows affected");
+		//		}catch(Exception e) {
+		//			e.printStackTrace();
+		//		}	// TODO Auto-generated method stub
 	}
 }
